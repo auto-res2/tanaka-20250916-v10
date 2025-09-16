@@ -1,3 +1,16 @@
-# Smoke-test configuration – auto-generated placeholder
 experiment: smoke_test
-note: Original experiment code was not provided; this file is intentionally empty.
+epochs: 2
+batch_size: 32
+datasets: ["cifar10"]
+models: ["resnet18"]
+num_samples: 1000
+guidance_steps: 1
+save_images: true
+save_results: true
+output_dir: ".research/iteration2"
+learning_rate: 0.1
+weight_decay: 5e-4
+momentum: 0.9
+delta_quantile: 1e-3
+guidance_mu: 0.5
+cone_penalty_lambda: 0.5
