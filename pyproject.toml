@@ -1,1 +1,16 @@
-# Please list the required python packages.
+[project]
+name = "c_sada_experiment"
+version = "0.1.0"
+description = "Auto-generated skeleton; original Experiment Code not supplied."
+authors = [{ name = "AutoGen", email = "author@example.com" }]
+
+dependencies = [
+    "torch>=1.9.0",
+    "torchvision>=0.10.0",
+    "numpy>=1.21.0",
+    "pyyaml>=6.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
