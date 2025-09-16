@@ -3,5 +3,19 @@
   "queries": [
     "novel image data augmentation",
     "GAN-based image augmentation"
+  ],
+  "research_study_list": [
+    {
+      "title": "Data Augmentation for Meta-Learning"
+    },
+    {
+      "title": "Data augmentation for deep learning based accelerated MRI reconstruction with limited data"
+    },
+    {
+      "title": "Improving Robustness using Generated Data"
+    },
+    {
+      "title": "Differentiable Augmentation for Data-Efficient GAN Training"
+    }
   ]
 }
