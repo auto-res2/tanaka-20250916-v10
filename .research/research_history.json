@@ -134,7 +134,904 @@
         "iNat-mini-2021",
         "CIFAR-C",
         "Tiny-C"
-      ]
+      ],
+      "external_resources": {
+        "hugging_face": {
+          "models": [
+            {
+              "id": "microsoft/resnet-18",
+              "author": "microsoft",
+              "sha": "65a5785d9156231087c481e0c7dd33a5ff6f7e3e",
+              "created_at": "2022-03-16T15:40:26+00:00",
+              "last_modified": "2024-04-08T11:06:50+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 121887,
+              "likes": 57,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "config.json"
+                },
+                {
+                  "rfilename": "model.safetensors"
+                },
+                {
+                  "rfilename": "preprocessor_config.json"
+                },
+                {
+                  "rfilename": "pytorch_model.bin"
+                },
+                {
+                  "rfilename": "tf_model.h5"
+                }
+              ],
+              "card_data": {
+                "license": "apache-2.0",
+                "language": [],
+                "tags": [
+                  "vision",
+                  "image-classification"
+                ],
+                "datasets": [
+                  "imagenet-1k"
+                ],
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": [
+                  {
+                    "src": "https://huggingface.co/datasets/mishig/sample_images/resolve/main/tiger.jpg",
+                    "example_title": "Tiger"
+                  },
+                  {
+                    "src": "https://huggingface.co/datasets/mishig/sample_images/resolve/main/teapot.jpg",
+                    "example_title": "Teapot"
+                  },
+                  {
+                    "src": "https://huggingface.co/datasets/mishig/sample_images/resolve/main/palace.jpg",
+                    "example_title": "Palace"
+                  }
+                ]
+              },
+              "tags": [
+                "transformers",
+                "pytorch",
+                "tf",
+                "safetensors",
+                "resnet",
+                "image-classification",
+                "vision",
+                "dataset:imagenet-1k",
+                "arxiv:1512.03385",
+                "license:apache-2.0",
+                "autotrain_compatible",
+                "endpoints_compatible",
+                "region:us"
+              ],
+              "pipeline_tag": "image-classification",
+              "library_name": "transformers",
+              "readme": "---\nlicense: apache-2.0\ntags:\n- vision\n- image-classification\n\ndatasets:\n- imagenet-1k\n\nwidget:\n- src: https://huggingface.co/datasets/mishig/sample_images/resolve/main/tiger.jpg\n  example_title: Tiger\n- src: https://huggingface.co/datasets/mishig/sample_images/resolve/main/teapot.jpg\n  example_title: Teapot\n- src: https://huggingface.co/datasets/mishig/sample_images/resolve/main/palace.jpg\n  example_title: Palace\n\n---\n\n# ResNet\n\nResNet model trained on imagenet-1k. It was introduced in the paper [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385) and first released in [this repository](https://github.com/KaimingHe/deep-residual-networks). \n\nDisclaimer: The team releasing ResNet did not write a model card for this model so this model card has been written by the Hugging Face team.\n\n## Model description\n\nResNet introduced residual connections, they allow to train networks with an unseen number of layers (up to 1000). ResNet won the 2015 ILSVRC & COCO competition, one important milestone in deep computer vision.\n\n![model image](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/resnet_architecture.png)\n\n## Intended uses & limitations\n\nYou can use the raw model for image classification. See the [model hub](https://huggingface.co/models?search=resnet) to look for\nfine-tuned versions on a task that interests you.\n\n### How to use\n\nHere is how to use this model:\n\n```python\n>>> from transformers import AutoImageProcessor, AutoModelForImageClassification\n>>> import torch\n>>> from datasets import load_dataset\n\n>>> dataset = load_dataset(\"huggingface/cats-image\")\n>>> image = dataset[\"test\"][\"image\"][0]\n\n>>> image_processor = AutoImageProcessor.from_pretrained(\"microsoft/resnet-18\")\n>>> model = AutoModelForImageClassification.from_pretrained(\"microsoft/resnet-18\")\n\n>>> inputs = image_processor(image, return_tensors=\"pt\")\n\n>>> with torch.no_grad():\n...     logits = model(**inputs).logits\n\n>>> # model predicts one of the 1000 ImageNet classes\n>>> predicted_label = logits.argmax(-1).item()\n>>> print(model.config.id2label[predicted_label])\ntiger cat\n```\n\n\n\nFor more code examples, we refer to the [documentation](https://huggingface.co/docs/transformers/master/en/model_doc/resnet).",
+              "extracted_code": "from transformers import AutoImageProcessor, AutoModelForImageClassification\nimport torch\nfrom datasets import load_dataset\n\ndataset = load_dataset(\"huggingface/cats-image\")\nimage = dataset[\"test\"][\"image\"][0]\n\nimage_processor = AutoImageProcessor.from_pretrained(\"microsoft/resnet-18\")\nmodel = AutoModelForImageClassification.from_pretrained(\"microsoft/resnet-18\")\n\ninputs = image_processor(image, return_tensors=\"pt\")\n\nwith torch.no_grad():\n    logits = model(**inputs).logits\n\n# model predicts one of the 1000 ImageNet classes\npredicted_label = logits.argmax(-1).item()\nprint(model.config.id2label[predicted_label])"
+            },
+            {
+              "id": "timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k",
+              "author": "timm",
+              "sha": "7d3afdd0cf93ad84d986eb2d6bcc5812ebd0b106",
+              "created_at": "2022-12-22T07:56:04+00:00",
+              "last_modified": "2025-01-21T19:16:52+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 88714,
+              "likes": 1,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "config.json"
+                },
+                {
+                  "rfilename": "model.safetensors"
+                },
+                {
+                  "rfilename": "pytorch_model.bin"
+                }
+              ],
+              "card_data": {
+                "license": "apache-2.0",
+                "language": [],
+                "library_name": "timm",
+                "tags": [
+                  "image-classification",
+                  "timm",
+                  "transformers"
+                ],
+                "datasets": [
+                  "imagenet-1k",
+                  "imagenet-21k"
+                ],
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "timm",
+                "pytorch",
+                "safetensors",
+                "image-classification",
+                "transformers",
+                "dataset:imagenet-1k",
+                "dataset:imagenet-21k",
+                "arxiv:2106.10270",
+                "arxiv:2010.11929",
+                "license:apache-2.0",
+                "region:us"
+              ],
+              "pipeline_tag": "image-classification",
+              "library_name": "timm",
+              "readme": "---\ntags:\n- image-classification\n- timm\n- transformers\nlibrary_name: timm\nlicense: apache-2.0\ndatasets:\n- imagenet-1k\n- imagenet-21k\n---\n# Model card for vit_tiny_patch16_224.augreg_in21k_ft_in1k\n\nA Vision Transformer (ViT) image classification model. Trained on ImageNet-21k and fine-tuned on ImageNet-1k (with additional augmentation and regularization) in JAX by paper authors, ported to PyTorch by Ross Wightman.\n\n\n## Model Details\n- **Model Type:** Image classification / feature backbone\n- **Model Stats:**\n  - Params (M): 5.7\n  - GMACs: 1.1\n  - Activations (M): 4.1\n  - Image size: 224 x 224\n- **Papers:**\n  - How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers: https://arxiv.org/abs/2106.10270\n  - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: https://arxiv.org/abs/2010.11929v2\n- **Dataset:** ImageNet-1k\n- **Pretrain Dataset:** ImageNet-21k\n- **Original:** https://github.com/google-research/vision_transformer\n\n## Model Usage\n### Image Classification\n```python\nfrom urllib.request import urlopen\nfrom PIL import Image\nimport timm\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model('vit_tiny_patch16_224.augreg_in21k_ft_in1k', pretrained=True)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # unsqueeze single image into batch of 1\n\ntop5_probabilities, top5_class_indices = torch.topk(output.softmax(dim=1) * 100, k=5)\n```\n\n### Image Embeddings\n```python\nfrom urllib.request import urlopen\nfrom PIL import Image\nimport timm\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model(\n    'vit_tiny_patch16_224.augreg_in21k_ft_in1k',\n    pretrained=True,\n    num_classes=0,  # remove classifier nn.Linear\n)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # output is (batch_size, num_features) shaped tensor\n\n# or equivalently (without needing to set num_classes=0)\n\noutput = model.forward_features(transforms(img).unsqueeze(0))\n# output is unpooled, a (1, 197, 192) shaped tensor\n\noutput = model.forward_head(output, pre_logits=True)\n# output is a (1, num_features) shaped tensor\n```\n\n## Model Comparison\nExplore the dataset and runtime metrics of this model in timm [model results](https://github.com/huggingface/pytorch-image-models/tree/main/results).\n\n## Citation\n```bibtex\n@article{steiner2021augreg,\n  title={How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers},\n  author={Steiner, Andreas and Kolesnikov, Alexander and and Zhai, Xiaohua and Wightman, Ross and Uszkoreit, Jakob and Beyer, Lucas},\n  journal={arXiv preprint arXiv:2106.10270},\n  year={2021}\n}\n```\n```bibtex\n@article{dosovitskiy2020vit,\n  title={An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale},\n  author={Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and  Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil},\n  journal={ICLR},\n  year={2021}\n}\n```\n```bibtex\n@misc{rw2019timm,\n  author = {Ross Wightman},\n  title = {PyTorch Image Models},\n  year = {2019},\n  publisher = {GitHub},\n  journal = {GitHub repository},\n  doi = {10.5281/zenodo.4414861},\n  howpublished = {\\url{https://github.com/huggingface/pytorch-image-models}}\n}\n```\n",
+              "extracted_code": "from urllib.request import urlopen\nfrom PIL import Image\nimport timm\nimport torch\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model('vit_tiny_patch16_224.augreg_in21k_ft_in1k', pretrained=True)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # unsqueeze single image into batch of 1\n\ntop5_probabilities, top5_class_indices = torch.topk(output.softmax(dim=1) * 100, k=5)"
+            },
+            {
+              "id": "refiners/sdxl.lightning.1step.unet",
+              "author": "refiners",
+              "sha": "ffb883f511c7915a10adda0372318d5a8bce889a",
+              "created_at": "2024-10-08T21:01:29+00:00",
+              "last_modified": "2024-10-11T14:34:29+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 16,
+              "likes": 1,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "model.safetensors"
+                }
+              ],
+              "card_data": {
+                "license": "openrail++",
+                "language": [
+                  "en"
+                ],
+                "library_name": "refiners",
+                "pipeline_tag": "image-to-image",
+                "tags": [
+                  "image-to-image",
+                  "stable-diffusion",
+                  "sdxl",
+                  "art"
+                ],
+                "datasets": [],
+                "base_model": "ByteDance/SDXL-Lightning",
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": [
+                  {
+                    "text": "‎",
+                    "output": {
+                      "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b9af40da-5147-43d6-b179-e14edc2b0e9b/width=1800/b9af40da-5147-43d6-b179-e14edc2b0e9b.jpeg"
+                    },
+                    "parameters": {
+                      "civitai": "https://civitai.com/images/7980366"
+                    }
+                  },
+                  {
+                    "text": "‎",
+                    "output": {
+                      "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c63367b7-30a1-4f73-8ec0-0678209f8388/width=1800/c63367b7-30a1-4f73-8ec0-0678209f8388.jpeg"
+                    },
+                    "parameters": {
+                      "civitai": "https://civitai.com/images/7980368"
+                    }
+                  },
+                  {
+                    "text": "‎",
+                    "output": {
+                      "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/541bca2c-8fea-4fd1-bea8-a17b2a8ee0ef/width=1800/541bca2c-8fea-4fd1-bea8-a17b2a8ee0ef.jpeg"
+                    },
+                    "parameters": {
+                      "civitai": "https://civitai.com/images/7980367"
+                    }
+                  },
+                  {
+                    "text": "‎",
+                    "output": {
+                      "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0dea0b57-5e41-47cd-8bcd-c2ae9d2415ff/width=1800/0dea0b57-5e41-47cd-8bcd-c2ae9d2415ff.jpeg"
+                    },
+                    "parameters": {
+                      "civitai": "https://civitai.com/images/7980369"
+                    }
+                  }
+                ]
+              },
+              "tags": [
+                "refiners",
+                "safetensors",
+                "image-to-image",
+                "stable-diffusion",
+                "sdxl",
+                "art",
+                "en",
+                "arxiv:2402.13929",
+                "base_model:ByteDance/SDXL-Lightning",
+                "base_model:adapter:ByteDance/SDXL-Lightning",
+                "license:openrail++",
+                "region:us"
+              ],
+              "pipeline_tag": "image-to-image",
+              "library_name": "refiners",
+              "readme": "---\nwidget:\n- text: \"‎\"\n  output:\n    url: https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b9af40da-5147-43d6-b179-e14edc2b0e9b/width=1800/b9af40da-5147-43d6-b179-e14edc2b0e9b.jpeg\n  parameters:\n    civitai: https://civitai.com/images/7980366\n- text: \"‎\"\n  output:\n    url: https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c63367b7-30a1-4f73-8ec0-0678209f8388/width=1800/c63367b7-30a1-4f73-8ec0-0678209f8388.jpeg\n  parameters:\n    civitai: https://civitai.com/images/7980368\n- text: \"‎\"\n  output:\n    url: https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/541bca2c-8fea-4fd1-bea8-a17b2a8ee0ef/width=1800/541bca2c-8fea-4fd1-bea8-a17b2a8ee0ef.jpeg\n  parameters:\n    civitai: https://civitai.com/images/7980367\n- text: \"‎\"\n  output:\n    url: https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0dea0b57-5e41-47cd-8bcd-c2ae9d2415ff/width=1800/0dea0b57-5e41-47cd-8bcd-c2ae9d2415ff.jpeg\n  parameters:\n    civitai: https://civitai.com/images/7980369\nlicense: openrail++\nbase_model: ByteDance/SDXL-Lightning\nbase_model_relation: adapter\nlanguage:\n- en\nlibrary_name: refiners\npipeline_tag: image-to-image\ntags:\n- image-to-image\n- stable-diffusion\n- sdxl\n- art\n---\n\n# Stable Diffusion XL Lightning\n\n<Gallery />\n\n## Citation\n\n```bibtex\n@misc{lin2024sdxllightning,\n      title={SDXL-Lightning: Progressive Adversarial Diffusion Distillation}, \n      author={Shanchuan Lin and Anran Wang and Xiao Yang},\n      year={2024},\n      eprint={2402.13929},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV}\n}\n```\n",
+              "extracted_code": ""
+            },
+            {
+              "id": "openai/clip-vit-large-patch14",
+              "author": "openai",
+              "sha": "32bd64288804d66eefd0ccbe215aa642df71cc41",
+              "created_at": "2022-03-02T23:29:05+00:00",
+              "last_modified": "2023-09-15T15:49:35+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 8221573,
+              "likes": 1859,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "config.json"
+                },
+                {
+                  "rfilename": "flax_model.msgpack"
+                },
+                {
+                  "rfilename": "merges.txt"
+                },
+                {
+                  "rfilename": "model.safetensors"
+                },
+                {
+                  "rfilename": "preprocessor_config.json"
+                },
+                {
+                  "rfilename": "pytorch_model.bin"
+                },
+                {
+                  "rfilename": "special_tokens_map.json"
+                },
+                {
+                  "rfilename": "tf_model.h5"
+                }
+              ],
+              "card_data": {
+                "language": [],
+                "tags": [
+                  "vision"
+                ],
+                "datasets": [],
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": [
+                  {
+                    "src": "https://huggingface.co/datasets/mishig/sample_images/resolve/main/cat-dog-music.png",
+                    "candidate_labels": "playing music, playing sports",
+                    "example_title": "Cat & Dog"
+                  }
+                ]
+              },
+              "tags": [
+                "transformers",
+                "pytorch",
+                "tf",
+                "jax",
+                "safetensors",
+                "clip",
+                "zero-shot-image-classification",
+                "vision",
+                "arxiv:2103.00020",
+                "arxiv:1908.04913",
+                "endpoints_compatible",
+                "region:us"
+              ],
+              "pipeline_tag": "zero-shot-image-classification",
+              "library_name": "transformers",
+              "readme": "---\ntags:\n- vision\nwidget:\n- src: https://huggingface.co/datasets/mishig/sample_images/resolve/main/cat-dog-music.png\n  candidate_labels: playing music, playing sports\n  example_title: Cat & Dog\n---\n\n# Model Card: CLIP\n\nDisclaimer: The model card is taken and modified from the official CLIP repository, it can be found [here](https://github.com/openai/CLIP/blob/main/model-card.md).\n\n## Model Details\n\nThe CLIP model was developed by researchers at OpenAI to learn about what contributes to robustness in computer vision tasks. The model was also developed to test the ability of models to generalize to arbitrary image classification tasks in a zero-shot manner. It was not developed for general model deployment - to deploy models like CLIP, researchers will first need to carefully study their capabilities in relation to the specific context they’re being deployed within.\n\n### Model Date\n\nJanuary 2021\n\n### Model Type\n\nThe base model uses a ViT-L/14 Transformer architecture as an image encoder and uses a masked self-attention Transformer as a text encoder. These encoders are trained to maximize the similarity of (image, text) pairs via a contrastive loss.\n\nThe original implementation had two variants: one using a ResNet image encoder and the other using a Vision Transformer. This repository has the variant with the Vision Transformer.\n\n\n### Documents\n\n- [Blog Post](https://openai.com/blog/clip/)\n- [CLIP Paper](https://arxiv.org/abs/2103.00020)\n\n\n### Use with Transformers\n\n```python\nfrom PIL import Image\nimport requests\n\nfrom transformers import CLIPProcessor, CLIPModel\n\nmodel = CLIPModel.from_pretrained(\"openai/clip-vit-large-patch14\")\nprocessor = CLIPProcessor.from_pretrained(\"openai/clip-vit-large-patch14\")\n\nurl = \"http://images.cocodataset.org/val2017/000000039769.jpg\"\nimage = Image.open(requests.get(url, stream=True).raw)\n\ninputs = processor(text=[\"a photo of a cat\", \"a photo of a dog\"], images=image, return_tensors=\"pt\", padding=True)\n\noutputs = model(**inputs)\nlogits_per_image = outputs.logits_per_image # this is the image-text similarity score\nprobs = logits_per_image.softmax(dim=1) # we can take the softmax to get the label probabilities\n```\n\n\n## Model Use\n\n### Intended Use\n\nThe model is intended as a research output for research communities. We hope that this model will enable researchers to better understand and explore zero-shot, arbitrary image classification. We also hope it can be used for interdisciplinary studies of the potential impact of such models - the CLIP paper includes a discussion of potential downstream impacts to provide an example for this sort of analysis.\n\n#### Primary intended uses\n\nThe primary intended users of these models are AI researchers.\n\nWe primarily imagine the model will be used by researchers to better understand robustness, generalization, and other capabilities, biases, and constraints of computer vision models.\n\n### Out-of-Scope Use Cases\n\n**Any** deployed use case of the model - whether commercial or not - is currently out of scope. Non-deployed use cases such as image search in a constrained environment, are also not recommended unless there is thorough in-domain testing of the model with a specific, fixed class taxonomy. This is because our safety assessment demonstrated a high need for task specific testing especially given the variability of CLIP’s performance with different class taxonomies. This makes untested and unconstrained deployment of the model in any use case currently potentially harmful. \n\nCertain use cases which would fall under the domain of surveillance and facial recognition are always out-of-scope regardless of performance of the model. This is because the use of artificial intelligence for tasks such as these can be premature currently given the lack of testing norms and checks to ensure its fair use.\n\nSince the model has not been purposefully trained in or evaluated on any languages other than English, its use should be limited to English language use cases.\n\n\n\n## Data\n\nThe model was trained on publicly available image-caption data. This was done through a combination of crawling a handful of websites and using commonly-used pre-existing image datasets such as [YFCC100M](http://projects.dfki.uni-kl.de/yfcc100m/). A large portion of the data comes from our crawling of the internet. This means that the data is more representative of people and societies most connected to the internet which tend to skew towards more developed nations, and younger, male users.\n\n### Data Mission Statement\n\nOur goal with building this dataset was to test out robustness and generalizability in computer vision tasks. As a result, the focus was on gathering large quantities of data from different publicly-available internet data sources. The data was gathered in a mostly non-interventionist manner. However, we only crawled websites that had policies against excessively violent and adult images and allowed us to filter out such content. We do not intend for this dataset to be used as the basis for any commercial or deployed model and will not be releasing the dataset.\n\n\n\n## Performance and Limitations\n\n### Performance\n\nWe have evaluated the performance of CLIP on a wide range of benchmarks across a variety of computer vision datasets such as OCR to texture recognition to fine-grained classification. The paper describes model performance on the following datasets:\n\n- Food101\n- CIFAR10   \n- CIFAR100   \n- Birdsnap\n- SUN397\n- Stanford Cars\n- FGVC Aircraft\n- VOC2007\n- DTD\n- Oxford-IIIT Pet dataset\n- Caltech101\n- Flowers102\n- MNIST   \n- SVHN \n- IIIT5K   \n- Hateful Memes   \n- SST-2\n- UCF101\n- Kinetics700\n- Country211\n- CLEVR Counting\n- KITTI Distance\n- STL-10\n- RareAct\n- Flickr30\n- MSCOCO\n- ImageNet\n- ImageNet-A\n- ImageNet-R\n- ImageNet Sketch\n- ObjectNet (ImageNet Overlap)\n- Youtube-BB\n- ImageNet-Vid\n\n## Limitations\n\nCLIP and our analysis of it have a number of limitations. CLIP currently struggles with respect to certain tasks such as fine grained classification and counting objects. CLIP also poses issues with regards to fairness and bias which we discuss in the paper and briefly in the next section. Additionally, our approach to testing CLIP also has an important limitation- in many cases we have used linear probes to evaluate the performance of CLIP and there is evidence suggesting that linear probes can underestimate model performance.\n\n### Bias and Fairness\n\nWe find that the performance of CLIP - and the specific biases it exhibits - can depend significantly on class design and the choices one makes for categories to include and exclude. We tested the risk of certain kinds of denigration with CLIP by classifying images of people from [Fairface](https://arxiv.org/abs/1908.04913) into crime-related and non-human animal categories. We found significant disparities with respect to race and gender. Additionally, we found that these disparities could shift based on how the classes were constructed. (Details captured in the Broader Impacts Section in the paper).\n\nWe also tested the performance of CLIP on gender, race and age classification using the Fairface dataset (We default to using race categories as they are constructed in the Fairface dataset.) in order to assess quality of performance across different demographics. We found accuracy >96% across all races for gender classification with ‘Middle Eastern’ having the highest accuracy (98.4%) and ‘White’ having the lowest (96.5%). Additionally, CLIP averaged ~93% for racial classification and ~63% for age classification. Our use of evaluations to test for gender, race and age classification as well as denigration harms is simply to evaluate performance of the model across people and surface potential risks and not to demonstrate an endorsement/enthusiasm for such tasks.\n\n\n\n## Feedback\n\n### Where to send questions or comments about the model\n\nPlease use [this Google Form](https://forms.gle/Uv7afRH5dvY34ZEs9)",
+              "extracted_code": "from PIL import Image\nimport requests\n\nfrom transformers import CLIPProcessor, CLIPModel\n\nmodel = CLIPModel.from_pretrained(\"openai/clip-vit-large-patch14\")\nprocessor = CLIPProcessor.from_pretrained(\"openai/clip-vit-large-patch14\")\n\nurl = \"http://images.cocodataset.org/val2017/000000039769.jpg\"\nimage = Image.open(requests.get(url, stream=True).raw)\n\ninputs = processor(text=[\"a photo of a cat\", \"a photo of a dog\"], images=image, return_tensors=\"pt\", padding=True)\n\noutputs = model(**inputs)\nlogits_per_image = outputs.logits_per_image # this is the image-text similarity score\nprobs = logits_per_image.softmax(dim=1) # we can take the softmax to get the label probabilities"
+            },
+            {
+              "id": "timm/vit_base_patch14_dinov2.lvd142m",
+              "author": "timm",
+              "sha": "4685c99dabffe5affac90bd99dbffd25801ae58d",
+              "created_at": "2023-05-09T20:48:20+00:00",
+              "last_modified": "2025-01-21T21:13:27+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 280483,
+              "likes": 7,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "config.json"
+                },
+                {
+                  "rfilename": "model.safetensors"
+                },
+                {
+                  "rfilename": "pytorch_model.bin"
+                }
+              ],
+              "card_data": {
+                "license": "apache-2.0",
+                "language": [],
+                "library_name": "timm",
+                "tags": [
+                  "image-feature-extraction",
+                  "timm",
+                  "transformers"
+                ],
+                "datasets": [],
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "timm",
+                "pytorch",
+                "safetensors",
+                "image-feature-extraction",
+                "transformers",
+                "arxiv:2304.07193",
+                "arxiv:2010.11929",
+                "license:apache-2.0",
+                "region:us"
+              ],
+              "pipeline_tag": "image-feature-extraction",
+              "library_name": "timm",
+              "readme": "---\nlicense: apache-2.0\nlibrary_name: timm\ntags:\n- image-feature-extraction\n- timm\n- transformers\n---\n# Model card for vit_base_patch14_dinov2.lvd142m\n\nA Vision Transformer (ViT) image feature model. Pretrained on LVD-142M with self-supervised DINOv2 method.\n\n\n## Model Details\n- **Model Type:** Image classification / feature backbone\n- **Model Stats:**\n  - Params (M): 86.6\n  - GMACs: 151.7\n  - Activations (M): 397.6\n  - Image size: 518 x 518\n- **Papers:**\n  - DINOv2: Learning Robust Visual Features without Supervision: https://arxiv.org/abs/2304.07193\n  - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: https://arxiv.org/abs/2010.11929v2\n- **Original:** https://github.com/facebookresearch/dinov2\n- **Pretrain Dataset:** LVD-142M\n\n## Model Usage\n### Image Classification\n```python\nfrom urllib.request import urlopen\nfrom PIL import Image\nimport timm\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model('vit_base_patch14_dinov2.lvd142m', pretrained=True)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # unsqueeze single image into batch of 1\n\ntop5_probabilities, top5_class_indices = torch.topk(output.softmax(dim=1) * 100, k=5)\n```\n\n### Image Embeddings\n```python\nfrom urllib.request import urlopen\nfrom PIL import Image\nimport timm\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model(\n    'vit_base_patch14_dinov2.lvd142m',\n    pretrained=True,\n    num_classes=0,  # remove classifier nn.Linear\n)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # output is (batch_size, num_features) shaped tensor\n\n# or equivalently (without needing to set num_classes=0)\n\noutput = model.forward_features(transforms(img).unsqueeze(0))\n# output is unpooled, a (1, 1370, 768) shaped tensor\n\noutput = model.forward_head(output, pre_logits=True)\n# output is a (1, num_features) shaped tensor\n```\n\n## Model Comparison\nExplore the dataset and runtime metrics of this model in timm [model results](https://github.com/huggingface/pytorch-image-models/tree/main/results).\n\n## Citation\n```bibtex\n@misc{oquab2023dinov2,\n  title={DINOv2: Learning Robust Visual Features without Supervision},\n  author={Oquab, Maxime and Darcet, Timothée and Moutakanni, Theo and Vo, Huy V. and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and Howes, Russell and Huang, Po-Yao and Xu, Hu and Sharma, Vasu and Li, Shang-Wen and Galuba, Wojciech and Rabbat, Mike and Assran, Mido and Ballas, Nicolas and Synnaeve, Gabriel and Misra, Ishan and Jegou, Herve and Mairal, Julien and Labatut, Patrick and Joulin, Armand and Bojanowski, Piotr},\n  journal={arXiv:2304.07193},\n  year={2023}\n}\n```\n```bibtex\n@article{dosovitskiy2020vit,\n  title={An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale},\n  author={Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and  Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil},\n  journal={ICLR},\n  year={2021}\n}\n```\n```bibtex\n@misc{rw2019timm,\n  author = {Ross Wightman},\n  title = {PyTorch Image Models},\n  year = {2019},\n  publisher = {GitHub},\n  journal = {GitHub repository},\n  doi = {10.5281/zenodo.4414861},\n  howpublished = {\\url{https://github.com/huggingface/pytorch-image-models}}\n}\n```",
+              "extracted_code": "from urllib.request import urlopen\nfrom PIL import Image\nimport timm\n\nimg = Image.open(urlopen(\n    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'\n))\n\nmodel = timm.create_model('vit_base_patch14_dinov2.lvd142m', pretrained=True)\nmodel = model.eval()\n\n# get model specific transforms (normalization, resize)\ndata_config = timm.data.resolve_model_data_config(model)\ntransforms = timm.data.create_transform(**data_config, is_training=False)\n\noutput = model(transforms(img).unsqueeze(0))  # unsqueeze single image into batch of 1\n\ntop5_probabilities, top5_class_indices = torch.topk(output.softmax(dim=1) * 100, k=5)"
+            }
+          ],
+          "datasets": [
+            {
+              "id": "uoft-cs/cifar10",
+              "author": "uoft-cs",
+              "sha": "0b2714987fa478483af9968de7c934580d0bb9a2",
+              "created_at": "2022-03-02T23:29:22+00:00",
+              "last_modified": "2024-01-04T06:53:11+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 69296,
+              "likes": 81,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "plain_text/test-00000-of-00001.parquet"
+                },
+                {
+                  "rfilename": "plain_text/train-00000-of-00001.parquet"
+                }
+              ],
+              "card_data": {
+                "license": [
+                  "unknown"
+                ],
+                "language": [
+                  "en"
+                ],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "10K<n<100K"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "annotations_creators:crowdsourced",
+                "language_creators:found",
+                "multilinguality:monolingual",
+                "source_datasets:extended|other-80-Million-Tiny-Images",
+                "language:en",
+                "license:unknown",
+                "size_categories:10K<n<100K",
+                "format:parquet",
+                "modality:image",
+                "library:datasets",
+                "library:pandas",
+                "library:mlcroissant",
+                "library:polars",
+                "region:us"
+              ],
+              "readme": "---\nannotations_creators:\n- crowdsourced\nlanguage_creators:\n- found\nlanguage:\n- en\nlicense:\n- unknown\nmultilinguality:\n- monolingual\nsize_categories:\n- 10K<n<100K\nsource_datasets:\n- extended|other-80-Million-Tiny-Images\ntask_categories:\n- image-classification\ntask_ids: []\npaperswithcode_id: cifar-10\npretty_name: Cifar10\ndataset_info:\n  config_name: plain_text\n  features:\n  - name: img\n    dtype: image\n  - name: label\n    dtype:\n      class_label:\n        names:\n          '0': airplane\n          '1': automobile\n          '2': bird\n          '3': cat\n          '4': deer\n          '5': dog\n          '6': frog\n          '7': horse\n          '8': ship\n          '9': truck\n  splits:\n  - name: train\n    num_bytes: 113648310.0\n    num_examples: 50000\n  - name: test\n    num_bytes: 22731580.0\n    num_examples: 10000\n  download_size: 143646105\n  dataset_size: 136379890.0\nconfigs:\n- config_name: plain_text\n  data_files:\n  - split: train\n    path: plain_text/train-*\n  - split: test\n    path: plain_text/test-*\n  default: true\n---\n\n# Dataset Card for CIFAR-10\n\n## Table of Contents\n- [Dataset Description](#dataset-description)\n  - [Dataset Summary](#dataset-summary)\n  - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)\n  - [Languages](#languages)\n- [Dataset Structure](#dataset-structure)\n  - [Data Instances](#data-instances)\n  - [Data Fields](#data-fields)\n  - [Data Splits](#data-splits)\n- [Dataset Creation](#dataset-creation)\n  - [Curation Rationale](#curation-rationale)\n  - [Source Data](#source-data)\n  - [Annotations](#annotations)\n  - [Personal and Sensitive Information](#personal-and-sensitive-information)\n- [Considerations for Using the Data](#considerations-for-using-the-data)\n  - [Social Impact of Dataset](#social-impact-of-dataset)\n  - [Discussion of Biases](#discussion-of-biases)\n  - [Other Known Limitations](#other-known-limitations)\n- [Additional Information](#additional-information)\n  - [Dataset Curators](#dataset-curators)\n  - [Licensing Information](#licensing-information)\n  - [Citation Information](#citation-information)\n  - [Contributions](#contributions)\n\n## Dataset Description\n\n- **Homepage:** https://www.cs.toronto.edu/~kriz/cifar.html\n- **Repository:** \n- **Paper:** Learning Multiple Layers of Features from Tiny Images by Alex Krizhevsky\n- **Leaderboard:**\n- **Point of Contact:**\n\n### Dataset Summary\n\nThe CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.\nThe dataset is divided into five training batches and one test batch, each with 10000 images. The test batch contains exactly 1000 randomly-selected images from each class. The training batches contain the remaining images in random order, but some training batches may contain more images from one class than another. Between them, the training batches contain exactly 5000 images from each class.\n\n### Supported Tasks and Leaderboards\n\n- `image-classification`: The goal of this task is to classify a given image into one of 10 classes. The leaderboard is available [here](https://paperswithcode.com/sota/image-classification-on-cifar-10).\n\n### Languages\n\nEnglish\n\n## Dataset Structure\n\n### Data Instances\n\nA sample from the training set is provided below:\n\n```\n{\n  'img': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=32x32 at 0x201FA6EE748>,\n  'label': 0\n}\n```\n\n### Data Fields\n\n- img: A `PIL.Image.Image` object containing the 32x32 image. Note that when accessing the image column: `dataset[0][\"image\"]` the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the `\"image\"` column, *i.e.* `dataset[0][\"image\"]` should **always** be preferred over `dataset[\"image\"][0]`\n- label: 0-9 with the following correspondence\n         0 airplane\n         1 automobile\n         2 bird\n         3 cat\n         4 deer\n         5 dog\n         6 frog\n         7 horse\n         8 ship\n         9 truck\n\n### Data Splits\n\nTrain and Test\n\n## Dataset Creation\n\n### Curation Rationale\n\n[More Information Needed]\n\n### Source Data\n\n#### Initial Data Collection and Normalization\n\n[More Information Needed]\n\n#### Who are the source language producers?\n\n[More Information Needed]\n\n### Annotations\n\n#### Annotation process\n\n[More Information Needed]\n\n#### Who are the annotators?\n\n[More Information Needed]\n\n### Personal and Sensitive Information\n\n[More Information Needed]\n\n## Considerations for Using the Data\n\n### Social Impact of Dataset\n\n[More Information Needed]\n\n### Discussion of Biases\n\n[More Information Needed]\n\n### Other Known Limitations\n\n[More Information Needed]\n\n## Additional Information\n\n### Dataset Curators\n\n[More Information Needed]\n\n### Licensing Information\n\n[More Information Needed]\n\n### Citation Information\n\n```\n@TECHREPORT{Krizhevsky09learningmultiple,\n    author = {Alex Krizhevsky},\n    title = {Learning multiple layers of features from tiny images},\n    institution = {},\n    year = {2009}\n}\n```\n\n### Contributions\n\nThanks to [@czabo](https://github.com/czabo) for adding this dataset.",
+              "extracted_code": "from datasets import load_dataset\n\ndataset = load_dataset(\"cifar10\", \"plain_text\")"
+            },
+            {
+              "id": "uoft-cs/cifar100",
+              "author": "uoft-cs",
+              "sha": "aadb3af77e9048adbea6b47c21a81e47dd092ae5",
+              "created_at": "2022-03-02T23:29:22+00:00",
+              "last_modified": "2024-01-04T06:57:47+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 12040,
+              "likes": 52,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "cifar100/test-00000-of-00001.parquet"
+                },
+                {
+                  "rfilename": "cifar100/train-00000-of-00001.parquet"
+                }
+              ],
+              "card_data": {
+                "license": [
+                  "unknown"
+                ],
+                "language": [
+                  "en"
+                ],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "10K<n<100K"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "annotations_creators:crowdsourced",
+                "language_creators:found",
+                "multilinguality:monolingual",
+                "source_datasets:extended|other-80-Million-Tiny-Images",
+                "language:en",
+                "license:unknown",
+                "size_categories:10K<n<100K",
+                "format:parquet",
+                "modality:image",
+                "library:datasets",
+                "library:pandas",
+                "library:mlcroissant",
+                "library:polars",
+                "region:us"
+              ],
+              "readme": "---\nannotations_creators:\n- crowdsourced\nlanguage_creators:\n- found\nlanguage:\n- en\nlicense:\n- unknown\nmultilinguality:\n- monolingual\nsize_categories:\n- 10K<n<100K\nsource_datasets:\n- extended|other-80-Million-Tiny-Images\ntask_categories:\n- image-classification\ntask_ids: []\npaperswithcode_id: cifar-100\npretty_name: Cifar100\ndataset_info:\n  config_name: cifar100\n  features:\n  - name: img\n    dtype: image\n  - name: fine_label\n    dtype:\n      class_label:\n        names:\n          '0': apple\n          '1': aquarium_fish\n          '2': baby\n          '3': bear\n          '4': beaver\n          '5': bed\n          '6': bee\n          '7': beetle\n          '8': bicycle\n          '9': bottle\n          '10': bowl\n          '11': boy\n          '12': bridge\n          '13': bus\n          '14': butterfly\n          '15': camel\n          '16': can\n          '17': castle\n          '18': caterpillar\n          '19': cattle\n          '20': chair\n          '21': chimpanzee\n          '22': clock\n          '23': cloud\n          '24': cockroach\n          '25': couch\n          '26': cra\n          '27': crocodile\n          '28': cup\n          '29': dinosaur\n          '30': dolphin\n          '31': elephant\n          '32': flatfish\n          '33': forest\n          '34': fox\n          '35': girl\n          '36': hamster\n          '37': house\n          '38': kangaroo\n          '39': keyboard\n          '40': lamp\n          '41': lawn_mower\n          '42': leopard\n          '43': lion\n          '44': lizard\n          '45': lobster\n          '46': man\n          '47': maple_tree\n          '48': motorcycle\n          '49': mountain\n          '50': mouse\n          '51': mushroom\n          '52': oak_tree\n          '53': orange\n          '54': orchid\n          '55': otter\n          '56': palm_tree\n          '57': pear\n          '58': pickup_truck\n          '59': pine_tree\n          '60': plain\n          '61': plate\n          '62': poppy\n          '63': porcupine\n          '64': possum\n          '65': rabbit\n          '66': raccoon\n          '67': ray\n          '68': road\n          '69': rocket\n          '70': rose\n          '71': sea\n          '72': seal\n          '73': shark\n          '74': shrew\n          '75': skunk\n          '76': skyscraper\n          '77': snail\n          '78': snake\n          '79': spider\n          '80': squirrel\n          '81': streetcar\n          '82': sunflower\n          '83': sweet_pepper\n          '84': table\n          '85': tank\n          '86': telephone\n          '87': television\n          '88': tiger\n          '89': tractor\n          '90': train\n          '91': trout\n          '92': tulip\n          '93': turtle\n          '94': wardrobe\n          '95': whale\n          '96': willow_tree\n          '97': wolf\n          '98': woman\n          '99': worm\n  - name: coarse_label\n    dtype:\n      class_label:\n        names:\n          '0': aquatic_mammals\n          '1': fish\n          '2': flowers\n          '3': food_containers\n          '4': fruit_and_vegetables\n          '5': household_electrical_devices\n          '6': household_furniture\n          '7': insects\n          '8': large_carnivores\n          '9': large_man-made_outdoor_things\n          '10': large_natural_outdoor_scenes\n          '11': large_omnivores_and_herbivores\n          '12': medium_mammals\n          '13': non-insect_invertebrates\n          '14': people\n          '15': reptiles\n          '16': small_mammals\n          '17': trees\n          '18': vehicles_1\n          '19': vehicles_2\n  splits:\n  - name: train\n    num_bytes: 112545106.0\n    num_examples: 50000\n  - name: test\n    num_bytes: 22564261.0\n    num_examples: 10000\n  download_size: 142291368\n  dataset_size: 135109367.0\nconfigs:\n- config_name: cifar100\n  data_files:\n  - split: train\n    path: cifar100/train-*\n  - split: test\n    path: cifar100/test-*\n  default: true\n---\n \n# Dataset Card for CIFAR-100\n\n## Table of Contents\n- [Dataset Description](#dataset-description)\n  - [Dataset Summary](#dataset-summary)\n  - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)\n  - [Languages](#languages)\n- [Dataset Structure](#dataset-structure)\n  - [Data Instances](#data-instances)\n  - [Data Fields](#data-fields)\n  - [Data Splits](#data-splits)\n- [Dataset Creation](#dataset-creation)\n  - [Curation Rationale](#curation-rationale)\n  - [Source Data](#source-data)\n  - [Annotations](#annotations)\n  - [Personal and Sensitive Information](#personal-and-sensitive-information)\n- [Considerations for Using the Data](#considerations-for-using-the-data)\n  - [Social Impact of Dataset](#social-impact-of-dataset)\n  - [Discussion of Biases](#discussion-of-biases)\n  - [Other Known Limitations](#other-known-limitations)\n- [Additional Information](#additional-information)\n  - [Dataset Curators](#dataset-curators)\n  - [Licensing Information](#licensing-information)\n  - [Citation Information](#citation-information)\n  - [Contributions](#contributions)\n\n## Dataset Description\n\n- **Homepage:** [CIFAR Datasets](https://www.cs.toronto.edu/~kriz/cifar.html)\n- **Repository:** \n- **Paper:** [Paper](https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf)\n- **Leaderboard:**\n- **Point of Contact:**\n \n### Dataset Summary\n \nThe CIFAR-100 dataset consists of 60000 32x32 colour images in 100 classes, with 600 images\nper class. There are 500 training images and 100 testing images per class. There are 50000 training images and 10000 test images. The 100 classes are grouped into 20 superclasses. \nThere are two labels per image - fine label (actual class) and coarse label (superclass).\n\n### Supported Tasks and Leaderboards\n\n- `image-classification`: The goal of this task is to classify a given image into one of 100 classes. The leaderboard is available [here](https://paperswithcode.com/sota/image-classification-on-cifar-100).\n\n### Languages\n\nEnglish\n\n## Dataset Structure\n\n### Data Instances\n\nA sample from the training set is provided below:\n\n```\n{\n  'img': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=32x32 at 0x2767F58E080>, 'fine_label': 19,\n  'coarse_label': 11\n}\n```\n\n### Data Fields\n\n- `img`: A `PIL.Image.Image` object containing the 32x32 image. Note that when accessing the image column: `dataset[0][\"image\"]` the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the `\"image\"` column, *i.e.* `dataset[0][\"image\"]` should **always** be preferred over `dataset[\"image\"][0]`\n- `fine_label`: an `int` classification label with the following mapping:\n\n  `0`: apple\n\n  `1`: aquarium_fish\n\n  `2`: baby\n\n  `3`: bear\n\n  `4`: beaver\n  \n  `5`: bed\n\n  `6`: bee\n\n  `7`: beetle\n\n  `8`: bicycle\n\n  `9`: bottle\n\n  `10`: bowl\n\n  `11`: boy\n\n  `12`: bridge\n\n  `13`: bus\n\n  `14`: butterfly\n\n  `15`: camel\n\n  `16`: can\n\n  `17`: castle\n\n  `18`: caterpillar\n\n  `19`: cattle\n\n  `20`: chair\n\n  `21`: chimpanzee\n\n  `22`: clock\n\n  `23`: cloud\n\n  `24`: cockroach\n\n  `25`: couch\n\n  `26`: cra\n\n  `27`: crocodile\n\n  `28`: cup\n\n  `29`: dinosaur\n\n  `30`: dolphin\n\n  `31`: elephant\n\n  `32`: flatfish\n\n  `33`: forest\n\n  `34`: fox\n\n  `35`: girl\n\n  `36`: hamster\n\n  `37`: house\n\n  `38`: kangaroo\n\n  `39`: keyboard\n\n  `40`: lamp\n\n  `41`: lawn_mower\n\n  `42`: leopard\n\n  `43`: lion\n\n  `44`: lizard\n\n  `45`: lobster\n\n  `46`: man\n\n  `47`: maple_tree\n\n  `48`: motorcycle\n\n  `49`: mountain\n\n  `50`: mouse\n\n  `51`: mushroom\n\n  `52`: oak_tree\n\n  `53`: orange\n\n  `54`: orchid\n\n  `55`: otter\n\n  `56`: palm_tree\n\n  `57`: pear\n\n  `58`: pickup_truck\n\n  `59`: pine_tree\n\n  `60`: plain\n\n  `61`: plate\n\n  `62`: poppy\n\n  `63`: porcupine\n\n  `64`: possum\n\n  `65`: rabbit\n\n  `66`: raccoon\n\n  `67`: ray\n\n  `68`: road\n\n  `69`: rocket\n\n  `70`: rose\n\n  `71`: sea\n\n  `72`: seal\n\n  `73`: shark\n\n  `74`: shrew\n\n  `75`: skunk\n\n  `76`: skyscraper\n\n  `77`: snail\n\n  `78`: snake\n\n  `79`: spider\n\n  `80`: squirrel\n\n  `81`: streetcar\n\n  `82`: sunflower\n\n  `83`: sweet_pepper\n\n  `84`: table\n\n  `85`: tank\n\n  `86`: telephone\n\n  `87`: television\n\n  `88`: tiger\n\n  `89`: tractor\n\n  `90`: train\n\n  `91`: trout\n\n  `92`: tulip\n\n  `93`: turtle\n\n  `94`: wardrobe\n\n  `95`: whale\n\n  `96`: willow_tree\n\n  `97`: wolf\n\n  `98`: woman\n\n  `99`: worm\n\n- `coarse_label`: an `int` coarse classification label with following mapping:\n\n  `0`: aquatic_mammals\n\n  `1`: fish\n\n  `2`: flowers\n\n  `3`: food_containers\n\n  `4`: fruit_and_vegetables\n\n  `5`: household_electrical_devices\n\n  `6`: household_furniture\n\n  `7`: insects\n\n  `8`: large_carnivores\n\n  `9`: large_man-made_outdoor_things\n\n  `10`: large_natural_outdoor_scenes\n\n  `11`: large_omnivores_and_herbivores\n\n  `12`: medium_mammals\n\n  `13`: non-insect_invertebrates\n\n  `14`: people\n\n  `15`: reptiles\n\n  `16`: small_mammals\n\n  `17`: trees\n\n  `18`: vehicles_1\n\n  `19`: vehicles_2\n\n\n \n### Data Splits\n \n|   name   |train|test|\n|----------|----:|---------:|\n|cifar100|50000|     10000|\n \n## Dataset Creation\n \n### Curation Rationale\n \n[More Information Needed]\n \n### Source Data\n \n#### Initial Data Collection and Normalization\n \n[More Information Needed]\n \n#### Who are the source language producers?\n \n[More Information Needed]\n \n### Annotations\n \n#### Annotation process\n \n[More Information Needed]\n \n#### Who are the annotators?\n \n[More Information Needed]\n \n### Personal and Sensitive Information\n \n[More Information Needed]\n \n## Considerations for Using the Data\n \n### Social Impact of Dataset\n \n[More Information Needed]\n \n### Discussion of Biases\n \n[More Information Needed]\n \n### Other Known Limitations\n \n[More Information Needed]\n \n## Additional Information\n \n### Dataset Curators\n \n[More Information Needed]\n \n### Licensing Information\n \n[More Information Needed]\n \n### Citation Information\n \n```\n@TECHREPORT{Krizhevsky09learningmultiple,\n    author = {Alex Krizhevsky},\n    title = {Learning multiple layers of features from tiny images},\n    institution = {},\n    year = {2009}\n}\n```\n\n### Contributions\n\nThanks to [@gchhablani](https://github.com/gchablani) for adding this dataset.",
+              "extracted_code": "from datasets import load_dataset\n\ndataset = load_dataset(\"cifar100\")\n\nprint(dataset[\"train\"][0])"
+            },
+            {
+              "id": "uoft-cs/cifar100",
+              "author": "uoft-cs",
+              "sha": "aadb3af77e9048adbea6b47c21a81e47dd092ae5",
+              "created_at": "2022-03-02T23:29:22+00:00",
+              "last_modified": "2024-01-04T06:57:47+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 12040,
+              "likes": 52,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "cifar100/test-00000-of-00001.parquet"
+                },
+                {
+                  "rfilename": "cifar100/train-00000-of-00001.parquet"
+                }
+              ],
+              "card_data": {
+                "license": [
+                  "unknown"
+                ],
+                "language": [
+                  "en"
+                ],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "10K<n<100K"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "annotations_creators:crowdsourced",
+                "language_creators:found",
+                "multilinguality:monolingual",
+                "source_datasets:extended|other-80-Million-Tiny-Images",
+                "language:en",
+                "license:unknown",
+                "size_categories:10K<n<100K",
+                "format:parquet",
+                "modality:image",
+                "library:datasets",
+                "library:pandas",
+                "library:mlcroissant",
+                "library:polars",
+                "region:us"
+              ],
+              "readme": "---\nannotations_creators:\n- crowdsourced\nlanguage_creators:\n- found\nlanguage:\n- en\nlicense:\n- unknown\nmultilinguality:\n- monolingual\nsize_categories:\n- 10K<n<100K\nsource_datasets:\n- extended|other-80-Million-Tiny-Images\ntask_categories:\n- image-classification\ntask_ids: []\npaperswithcode_id: cifar-100\npretty_name: Cifar100\ndataset_info:\n  config_name: cifar100\n  features:\n  - name: img\n    dtype: image\n  - name: fine_label\n    dtype:\n      class_label:\n        names:\n          '0': apple\n          '1': aquarium_fish\n          '2': baby\n          '3': bear\n          '4': beaver\n          '5': bed\n          '6': bee\n          '7': beetle\n          '8': bicycle\n          '9': bottle\n          '10': bowl\n          '11': boy\n          '12': bridge\n          '13': bus\n          '14': butterfly\n          '15': camel\n          '16': can\n          '17': castle\n          '18': caterpillar\n          '19': cattle\n          '20': chair\n          '21': chimpanzee\n          '22': clock\n          '23': cloud\n          '24': cockroach\n          '25': couch\n          '26': cra\n          '27': crocodile\n          '28': cup\n          '29': dinosaur\n          '30': dolphin\n          '31': elephant\n          '32': flatfish\n          '33': forest\n          '34': fox\n          '35': girl\n          '36': hamster\n          '37': house\n          '38': kangaroo\n          '39': keyboard\n          '40': lamp\n          '41': lawn_mower\n          '42': leopard\n          '43': lion\n          '44': lizard\n          '45': lobster\n          '46': man\n          '47': maple_tree\n          '48': motorcycle\n          '49': mountain\n          '50': mouse\n          '51': mushroom\n          '52': oak_tree\n          '53': orange\n          '54': orchid\n          '55': otter\n          '56': palm_tree\n          '57': pear\n          '58': pickup_truck\n          '59': pine_tree\n          '60': plain\n          '61': plate\n          '62': poppy\n          '63': porcupine\n          '64': possum\n          '65': rabbit\n          '66': raccoon\n          '67': ray\n          '68': road\n          '69': rocket\n          '70': rose\n          '71': sea\n          '72': seal\n          '73': shark\n          '74': shrew\n          '75': skunk\n          '76': skyscraper\n          '77': snail\n          '78': snake\n          '79': spider\n          '80': squirrel\n          '81': streetcar\n          '82': sunflower\n          '83': sweet_pepper\n          '84': table\n          '85': tank\n          '86': telephone\n          '87': television\n          '88': tiger\n          '89': tractor\n          '90': train\n          '91': trout\n          '92': tulip\n          '93': turtle\n          '94': wardrobe\n          '95': whale\n          '96': willow_tree\n          '97': wolf\n          '98': woman\n          '99': worm\n  - name: coarse_label\n    dtype:\n      class_label:\n        names:\n          '0': aquatic_mammals\n          '1': fish\n          '2': flowers\n          '3': food_containers\n          '4': fruit_and_vegetables\n          '5': household_electrical_devices\n          '6': household_furniture\n          '7': insects\n          '8': large_carnivores\n          '9': large_man-made_outdoor_things\n          '10': large_natural_outdoor_scenes\n          '11': large_omnivores_and_herbivores\n          '12': medium_mammals\n          '13': non-insect_invertebrates\n          '14': people\n          '15': reptiles\n          '16': small_mammals\n          '17': trees\n          '18': vehicles_1\n          '19': vehicles_2\n  splits:\n  - name: train\n    num_bytes: 112545106.0\n    num_examples: 50000\n  - name: test\n    num_bytes: 22564261.0\n    num_examples: 10000\n  download_size: 142291368\n  dataset_size: 135109367.0\nconfigs:\n- config_name: cifar100\n  data_files:\n  - split: train\n    path: cifar100/train-*\n  - split: test\n    path: cifar100/test-*\n  default: true\n---\n \n# Dataset Card for CIFAR-100\n\n## Table of Contents\n- [Dataset Description](#dataset-description)\n  - [Dataset Summary](#dataset-summary)\n  - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)\n  - [Languages](#languages)\n- [Dataset Structure](#dataset-structure)\n  - [Data Instances](#data-instances)\n  - [Data Fields](#data-fields)\n  - [Data Splits](#data-splits)\n- [Dataset Creation](#dataset-creation)\n  - [Curation Rationale](#curation-rationale)\n  - [Source Data](#source-data)\n  - [Annotations](#annotations)\n  - [Personal and Sensitive Information](#personal-and-sensitive-information)\n- [Considerations for Using the Data](#considerations-for-using-the-data)\n  - [Social Impact of Dataset](#social-impact-of-dataset)\n  - [Discussion of Biases](#discussion-of-biases)\n  - [Other Known Limitations](#other-known-limitations)\n- [Additional Information](#additional-information)\n  - [Dataset Curators](#dataset-curators)\n  - [Licensing Information](#licensing-information)\n  - [Citation Information](#citation-information)\n  - [Contributions](#contributions)\n\n## Dataset Description\n\n- **Homepage:** [CIFAR Datasets](https://www.cs.toronto.edu/~kriz/cifar.html)\n- **Repository:** \n- **Paper:** [Paper](https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf)\n- **Leaderboard:**\n- **Point of Contact:**\n \n### Dataset Summary\n \nThe CIFAR-100 dataset consists of 60000 32x32 colour images in 100 classes, with 600 images\nper class. There are 500 training images and 100 testing images per class. There are 50000 training images and 10000 test images. The 100 classes are grouped into 20 superclasses. \nThere are two labels per image - fine label (actual class) and coarse label (superclass).\n\n### Supported Tasks and Leaderboards\n\n- `image-classification`: The goal of this task is to classify a given image into one of 100 classes. The leaderboard is available [here](https://paperswithcode.com/sota/image-classification-on-cifar-100).\n\n### Languages\n\nEnglish\n\n## Dataset Structure\n\n### Data Instances\n\nA sample from the training set is provided below:\n\n```\n{\n  'img': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=32x32 at 0x2767F58E080>, 'fine_label': 19,\n  'coarse_label': 11\n}\n```\n\n### Data Fields\n\n- `img`: A `PIL.Image.Image` object containing the 32x32 image. Note that when accessing the image column: `dataset[0][\"image\"]` the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the `\"image\"` column, *i.e.* `dataset[0][\"image\"]` should **always** be preferred over `dataset[\"image\"][0]`\n- `fine_label`: an `int` classification label with the following mapping:\n\n  `0`: apple\n\n  `1`: aquarium_fish\n\n  `2`: baby\n\n  `3`: bear\n\n  `4`: beaver\n  \n  `5`: bed\n\n  `6`: bee\n\n  `7`: beetle\n\n  `8`: bicycle\n\n  `9`: bottle\n\n  `10`: bowl\n\n  `11`: boy\n\n  `12`: bridge\n\n  `13`: bus\n\n  `14`: butterfly\n\n  `15`: camel\n\n  `16`: can\n\n  `17`: castle\n\n  `18`: caterpillar\n\n  `19`: cattle\n\n  `20`: chair\n\n  `21`: chimpanzee\n\n  `22`: clock\n\n  `23`: cloud\n\n  `24`: cockroach\n\n  `25`: couch\n\n  `26`: cra\n\n  `27`: crocodile\n\n  `28`: cup\n\n  `29`: dinosaur\n\n  `30`: dolphin\n\n  `31`: elephant\n\n  `32`: flatfish\n\n  `33`: forest\n\n  `34`: fox\n\n  `35`: girl\n\n  `36`: hamster\n\n  `37`: house\n\n  `38`: kangaroo\n\n  `39`: keyboard\n\n  `40`: lamp\n\n  `41`: lawn_mower\n\n  `42`: leopard\n\n  `43`: lion\n\n  `44`: lizard\n\n  `45`: lobster\n\n  `46`: man\n\n  `47`: maple_tree\n\n  `48`: motorcycle\n\n  `49`: mountain\n\n  `50`: mouse\n\n  `51`: mushroom\n\n  `52`: oak_tree\n\n  `53`: orange\n\n  `54`: orchid\n\n  `55`: otter\n\n  `56`: palm_tree\n\n  `57`: pear\n\n  `58`: pickup_truck\n\n  `59`: pine_tree\n\n  `60`: plain\n\n  `61`: plate\n\n  `62`: poppy\n\n  `63`: porcupine\n\n  `64`: possum\n\n  `65`: rabbit\n\n  `66`: raccoon\n\n  `67`: ray\n\n  `68`: road\n\n  `69`: rocket\n\n  `70`: rose\n\n  `71`: sea\n\n  `72`: seal\n\n  `73`: shark\n\n  `74`: shrew\n\n  `75`: skunk\n\n  `76`: skyscraper\n\n  `77`: snail\n\n  `78`: snake\n\n  `79`: spider\n\n  `80`: squirrel\n\n  `81`: streetcar\n\n  `82`: sunflower\n\n  `83`: sweet_pepper\n\n  `84`: table\n\n  `85`: tank\n\n  `86`: telephone\n\n  `87`: television\n\n  `88`: tiger\n\n  `89`: tractor\n\n  `90`: train\n\n  `91`: trout\n\n  `92`: tulip\n\n  `93`: turtle\n\n  `94`: wardrobe\n\n  `95`: whale\n\n  `96`: willow_tree\n\n  `97`: wolf\n\n  `98`: woman\n\n  `99`: worm\n\n- `coarse_label`: an `int` coarse classification label with following mapping:\n\n  `0`: aquatic_mammals\n\n  `1`: fish\n\n  `2`: flowers\n\n  `3`: food_containers\n\n  `4`: fruit_and_vegetables\n\n  `5`: household_electrical_devices\n\n  `6`: household_furniture\n\n  `7`: insects\n\n  `8`: large_carnivores\n\n  `9`: large_man-made_outdoor_things\n\n  `10`: large_natural_outdoor_scenes\n\n  `11`: large_omnivores_and_herbivores\n\n  `12`: medium_mammals\n\n  `13`: non-insect_invertebrates\n\n  `14`: people\n\n  `15`: reptiles\n\n  `16`: small_mammals\n\n  `17`: trees\n\n  `18`: vehicles_1\n\n  `19`: vehicles_2\n\n\n \n### Data Splits\n \n|   name   |train|test|\n|----------|----:|---------:|\n|cifar100|50000|     10000|\n \n## Dataset Creation\n \n### Curation Rationale\n \n[More Information Needed]\n \n### Source Data\n \n#### Initial Data Collection and Normalization\n \n[More Information Needed]\n \n#### Who are the source language producers?\n \n[More Information Needed]\n \n### Annotations\n \n#### Annotation process\n \n[More Information Needed]\n \n#### Who are the annotators?\n \n[More Information Needed]\n \n### Personal and Sensitive Information\n \n[More Information Needed]\n \n## Considerations for Using the Data\n \n### Social Impact of Dataset\n \n[More Information Needed]\n \n### Discussion of Biases\n \n[More Information Needed]\n \n### Other Known Limitations\n \n[More Information Needed]\n \n## Additional Information\n \n### Dataset Curators\n \n[More Information Needed]\n \n### Licensing Information\n \n[More Information Needed]\n \n### Citation Information\n \n```\n@TECHREPORT{Krizhevsky09learningmultiple,\n    author = {Alex Krizhevsky},\n    title = {Learning multiple layers of features from tiny images},\n    institution = {},\n    year = {2009}\n}\n```\n\n### Contributions\n\nThanks to [@gchhablani](https://github.com/gchablani) for adding this dataset.",
+              "extracted_code": "from datasets import load_dataset\n\ndataset = load_dataset(\"cifar100\")\n"
+            },
+            {
+              "id": "randall-lab/cifar100-c",
+              "author": "randall-lab",
+              "sha": "ebc72cd7f49cb642fefe8b328a60dfb5de7ae463",
+              "created_at": "2025-02-23T18:29:14+00:00",
+              "last_modified": "2025-02-23T18:58:04+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 95,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "cifar100-c.py"
+                }
+              ],
+              "tags": [
+                "arxiv:1903.12261",
+                "region:us"
+              ],
+              "readme": "---\n# For reference on dataset card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1\n# Doc / guide: https://huggingface.co/docs/hub/datasets-cards\n{}\n---\n\n# Dataset Card for CIFAR-100-C\n\n<!-- Provide a quick summary of the dataset. -->\n\n## Dataset Details\n\n### Dataset Description\n\n<!-- Provide a longer summary of what this dataset is. -->\nThe CIFAR-100-C dataset is an extension of CIFAR-100 designed to evaluate model robustness to common corruptions. It consists of 950,000 images derived from the original CIFAR-100 test set (10,000 images) by applying 19 different corruption types at 5 severity levels. The corruptions include noise, blur, weather effects, and digital distortions. This dataset is widely used for benchmarking robustness in image classification tasks.\n\n### Dataset Sources\n\n<!-- Provide the basic links for the dataset. -->\n\n- **Homepage:** https://github.com/hendrycks/robustness\n- **Paper:** Hendrycks, D., & Dietterich, T. (2019). Benchmarking neural network robustness to common corruptions and perturbations. arXiv preprint arXiv:1903.12261.\n\n## Dataset Structure\n\n<!-- This section provides a description of the dataset fields, and additional information about the dataset structure such as criteria used to create the splits, relationships between data points, etc. -->\n\nEach sample in the dataset contains:\n\n- **image**: A 32×32 RGB image in PNG format\n\n- **label**: An integer between 0 and 99, representing the class\n\n- **corruption_name**: The name of the applied corruption\n\n- **corruption_level**: An integer between 1 and 5 indicating severity\n\n\nTotal images: 950,000\n\nClasses: 100 (e.g., apple, aquarium fish, baby, bear, beaver, bed, bee, beetle, bicycle, bottle, etc.)\n\nCorruptions: 19 types (e.g., Gaussian noise, motion blur, contrast, fog, frost, elastic transform, pixelate, JPEG compression, etc.)\n\nSeverity Levels: 5 (ranging from least to most severe)\n\nSplits:\n\n- **Test:** 950,000 images\n\nImage specs: PNG format, 32×32 pixels, RGB\n\n## Example Usage\nBelow is a quick example of how to load this dataset via the Hugging Face Datasets library.\n```\nfrom datasets import load_dataset  \n\n# Load the dataset  \ndataset = load_dataset(\"randall-lab/cifar100-c\", split=\"test\", trust_remote_code=True)  \n\n# Access a sample from the dataset  \nexample = dataset[0]  \nimage = example[\"image\"]  \nlabel = example[\"label\"]  \n\nimage.show()  # Display the image  \nprint(f\"Label: {label}\")\n```\n\n## Citation\n\n<!-- If there is a paper or blog post introducing the dataset, the APA and Bibtex information for that should go in this section. -->\n\n**BibTeX:**\n\n@article{hendrycks2019benchmarking,\n  title={Benchmarking neural network robustness to common corruptions and perturbations},\n  author={Hendrycks, Dan and Dietterich, Thomas},\n  journal={arXiv preprint arXiv:1903.12261},\n  year={2019}\n}\n",
+              "extracted_code": "from datasets import load_dataset  \n\n# Load the dataset  \ndataset = load_dataset(\"randall-lab/cifar100-c\", split=\"test\", trust_remote_code=True)  \n\n# Access a sample from the dataset  \nexample = dataset[0]  \nimage = example[\"image\"]  \nlabel = example[\"label\"]  \n\nimage.show()  # Display the image  \nprint(f\"Label: {label}\")"
+            },
+            {
+              "id": "zh-plus/tiny-imagenet",
+              "author": "zh-plus",
+              "sha": "5a77092c28e51558c5586e9c5eb71a7e17a5e43f",
+              "created_at": "2022-07-01T03:33:16+00:00",
+              "last_modified": "2022-07-12T09:04:30+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 18179,
+              "likes": 81,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "classes.py"
+                },
+                {
+                  "rfilename": "data/train-00000-of-00001-1359597a978bc4fa.parquet"
+                },
+                {
+                  "rfilename": "data/valid-00000-of-00001-70d52db3c749a935.parquet"
+                },
+                {
+                  "rfilename": "dataset_infos.json"
+                }
+              ],
+              "card_data": {
+                "license": [],
+                "language": [
+                  "en"
+                ],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "100K<n<1M"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "task_ids:multi-class-image-classification",
+                "annotations_creators:crowdsourced",
+                "language_creators:crowdsourced",
+                "multilinguality:monolingual",
+                "source_datasets:extended|imagenet-1k",
+                "language:en",
+                "size_categories:100K<n<1M",
+                "format:parquet",
+                "modality:image",
+                "library:datasets",
+                "library:pandas",
+                "library:mlcroissant",
+                "library:polars",
+                "region:us"
+              ],
+              "readme": "---\nannotations_creators:\n- crowdsourced\nextra_gated_prompt: \"By clicking on \\u201CAccess repository\\u201D below, you also\\\n  \\ agree to ImageNet Terms of Access:\\n[RESEARCHER_FULLNAME] (the \\\"Researcher\\\"\\\n  ) has requested permission to use the ImageNet database (the \\\"Database\\\") at Princeton\\\n  \\ University and Stanford University. In exchange for such permission, Researcher\\\n  \\ hereby agrees to the following terms and conditions:\\n1. Researcher shall use\\\n  \\ the Database only for non-commercial research and educational purposes.\\n2. Princeton\\\n  \\ University, Stanford University and Hugging Face make no representations or warranties\\\n  \\ regarding the Database, including but not limited to warranties of non-infringement\\\n  \\ or fitness for a particular purpose.\\n3. Researcher accepts full responsibility\\\n  \\ for his or her use of the Database and shall defend and indemnify the ImageNet\\\n  \\ team, Princeton University, Stanford University and Hugging Face, including their\\\n  \\ employees, Trustees, officers and agents, against any and all claims arising from\\\n  \\ Researcher's use of the Database, including but not limited to Researcher's use\\\n  \\ of any copies of copyrighted images that he or she may create from the Database.\\n\\\n  4. Researcher may provide research associates and colleagues with access to the\\\n  \\ Database provided that they first agree to be bound by these terms and conditions.\\n\\\n  5. Princeton University, Stanford University and Hugging Face reserve the right\\\n  \\ to terminate Researcher's access to the Database at any time.\\n6. If Researcher\\\n  \\ is employed by a for-profit, commercial entity, Researcher's employer shall also\\\n  \\ be bound by these terms and conditions, and Researcher hereby represents that\\\n  \\ he or she is fully authorized to enter into this agreement on behalf of such employer.\\n\\\n  7. The law of the State of New Jersey shall apply to all disputes under this agreement.\"\nlanguage:\n- en\nlanguage_creators:\n- crowdsourced\nlicense: []\nmultilinguality:\n- monolingual\npaperswithcode_id: imagenet\npretty_name: Tiny-ImageNet\nsize_categories:\n- 100K<n<1M\nsource_datasets:\n- extended|imagenet-1k\ntask_categories:\n- image-classification\ntask_ids:\n- multi-class-image-classification\n---\n\n# Dataset Card for tiny-imagenet\n\n## Dataset Description\n\n- **Homepage:** https://www.kaggle.com/c/tiny-imagenet\n- **Repository:** [Needs More Information]\n- **Paper:** http://cs231n.stanford.edu/reports/2017/pdfs/930.pdf\n- **Leaderboard:** https://paperswithcode.com/sota/image-classification-on-tiny-imagenet-1\n\n### Dataset Summary\n\nTiny ImageNet contains 100000 images of 200 classes (500 for each class) downsized to 64×64 colored images. Each class has 500 training images, 50 validation images, and 50 test images.\n\n### Languages\n\nThe class labels in the dataset are in English.\n\n## Dataset Structure\n\n### Data Instances\n\n```json\n{\n  'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=64x64 at 0x1A800E8E190,\n  'label': 15\n}\n```\n\n### Data Fields\n\n- image: A PIL.Image.Image object containing the image. Note that when accessing the image column: dataset[0][\"image\"] the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the \"image\" column, i.e. dataset[0][\"image\"] should always be preferred over dataset[\"image\"][0].\n- label: an int classification label. -1 for test set as the labels are missing. Check `classes.py` for the map of numbers & labels.\n\n### Data Splits\n\n|              | Train  | Valid |\n| ------------ | ------ | ----- |\n| # of samples | 100000 | 10000 |\n\n## Usage\n\n### Example\n\n#### Load Dataset\n```python\ndef example_usage():\n    tiny_imagenet = load_dataset('Maysee/tiny-imagenet', split='train')\n    print(tiny_imagenet[0])\n\nif __name__ == '__main__':\n    example_usage()\n```",
+              "extracted_code": "from datasets import load_dataset\n\ndef example_usage():\n    tiny_imagenet = load_dataset('Maysee/tiny-imagenet', split='train')\n    print(tiny_imagenet[0])\n\nif __name__ == '__main__':\n    example_usage()"
+            },
+            {
+              "id": "randall-lab/tiny-imagenet-c",
+              "author": "randall-lab",
+              "sha": "c1fd717edefaec2969bb434b9221de0cd07c581c",
+              "created_at": "2025-03-19T16:03:37+00:00",
+              "last_modified": "2025-03-19T18:51:55+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 52,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "tiny-imagenet-c.py"
+                }
+              ],
+              "tags": [
+                "arxiv:1903.12261",
+                "region:us"
+              ],
+              "readme": "---\n{}\n---\n\n# Dataset Card for Tiny-ImageNet-C\n\n<!-- Provide a quick summary of the dataset. -->\n\n## Dataset Details\n\n### Dataset Description\n\n<!-- Provide a longer summary of what this dataset is. -->\n\nIn Tiny ImageNet-C, there are 75,109 corrupted images derived from the original Tiny ImageNet dataset. The images are affected by two different corruption types at five severity levels.\n\n- **License:** CC BY 4.0\n\n### Dataset Sources\n\n<!-- Provide the basic links for the dataset. -->\n\n- **Homepage:** https://github.com/hendrycks/robustness\n- **Paper:** Hendrycks, D., & Dietterich, T. (2019). Benchmarking neural network robustness to common corruptions and perturbations. arXiv preprint arXiv:1903.12261.\n\n## Dataset Structure\n\n<!-- This section provides a description of the dataset fields, and additional information about the dataset structure such as criteria used to create the splits, relationships between data points, etc. -->\n\nTotal images: 75,109\n\nClasses: 200 categories\n\nSplits:\n\n- **Test:** 75,109 images\n\nImage specs: JPEG format, 64×64 pixels, RGB\n\n## Example Usage\nBelow is a quick example of how to load this dataset via the Hugging Face Datasets library.\n```\nfrom datasets import load_dataset  \n\n# Load the dataset  \ndataset = load_dataset(\"randall-lab/tiny-imagenet-c\", split=\"test\", trust_remote_code=True)\n\n# Access a sample from the dataset  \nexample = dataset[0]  \nimage = example[\"image\"]  \nlabel = example[\"label\"]  \n\nimage.show()  # Display the image  \nprint(f\"Label: {label}\")\n```\n\n## Citation\n\n<!-- If there is a paper or blog post introducing the dataset, the APA and Bibtex information for that should go in this section. -->\n\n**BibTeX:**\n\n@article{hendrycks2019benchmarking,\n  title={Benchmarking neural network robustness to common corruptions and perturbations},\n  author={Hendrycks, Dan and Dietterich, Thomas},\n  journal={arXiv preprint arXiv:1903.12261},\n  year={2019}\n}\n",
+              "extracted_code": "from datasets import load_dataset\n\n# Load the dataset\ndataset = load_dataset(\"randall-lab/tiny-imagenet-c\", split=\"test\", trust_remote_code=True)\n\n# Access a sample from the dataset\nexample = dataset[0]\nimage = example[\"image\"]\nlabel = example[\"label\"]\n\nimage.show()  # Display the image\nprint(f\"Label: {label}\")"
+            },
+            {
+              "id": "birder-project/CUB_200_2011",
+              "author": "birder-project",
+              "sha": "defe5f8142122ba6bdf5fb06e85afd05973cc7bb",
+              "created_at": "2024-10-03T03:54:29+00:00",
+              "last_modified": "2025-08-29T05:49:16+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 50,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "CUB_200_2011.tar"
+                },
+                {
+                  "rfilename": "README.md"
+                }
+              ],
+              "card_data": {
+                "license": "unknown",
+                "language": [],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "10K<n<100K"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "license:unknown",
+                "size_categories:10K<n<100K",
+                "format:webdataset",
+                "modality:image",
+                "modality:text",
+                "library:datasets",
+                "library:webdataset",
+                "library:mlcroissant",
+                "region:us"
+              ],
+              "readme": "---\nlicense: unknown\ntask_categories:\n- image-classification\npretty_name: Caltech-UCSD Birds-200-2011\nsize_categories:\n- 10K<n<100K\n---\n\n# Caltech-UCSD Birds-200-2011\n\n## Dataset Summary\n\nThis is a repackaged version of the Caltech-UCSD Birds-200-2011 dataset for convenient use with PyTorch's `ImageFolder` class.\n\n**Note**: All credit goes to the original authors.\n\nThis upload only provides the same data in a different structure.\n\n- Website: <https://www.vision.caltech.edu/datasets/cub_200_2011/>\n- Paper: <https://authors.library.caltech.edu/records/cvm3y-5hh21>\n\n200 categories dataset consists of 11,788 images (1.1GB).\n\n## Citation\n\n```bibtex\n@article{wah_branson_welinder_perona_belongie_2011,\n         title={The Caltech-UCSD Birds-200-2011 Dataset},\n         abstractNote={CUB-200-2011 is an extended version of CUB-200 [7], a challenging dataset of 200 bird species. The extended version roughly doubles the number of images per category and adds new part localization annotations. All images are annotated with bounding boxes, part locations, and attribute labels. Images and annotations were filtered by multiple users of Mechanical Turk. We introduce benchmarks and baseline experiments for multi-class categorization and part localization.},\n         publisher={California Institute of Technology},\n         author={Wah, Catherine and Branson, Steve and Welinder, Peter and Perona, Pietro and Belongie, Serge},\n         year={2011},\n         month={Jul},\n}\n```\n",
+              "extracted_code": ""
+            },
+            {
+              "id": "Manas2703/chest-xray-14",
+              "author": "Manas2703",
+              "sha": "023ce0e24f09afc689234df6b013586932b27845",
+              "created_at": "2025-03-13T03:32:30+00:00",
+              "last_modified": "2025-03-13T03:32:34+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 76,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "dataset_dict.json"
+                },
+                {
+                  "rfilename": "labels.txt"
+                },
+                {
+                  "rfilename": "test/data-00000-of-00001.arrow"
+                },
+                {
+                  "rfilename": "test/dataset_info.json"
+                },
+                {
+                  "rfilename": "test/state.json"
+                },
+                {
+                  "rfilename": "train/data-00000-of-00001.arrow"
+                },
+                {
+                  "rfilename": "train/dataset_info.json"
+                },
+                {
+                  "rfilename": "train/state.json"
+                }
+              ],
+              "card_data": {
+                "license": "mit",
+                "language": [
+                  "en"
+                ],
+                "tags": [
+                  "medical-imaging",
+                  "chest-xray",
+                  "healthcare"
+                ],
+                "datasets": [],
+                "task_categories": [
+                  "image-classification"
+                ],
+                "size_categories": [
+                  "10K<n<100K"
+                ],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "task_categories:image-classification",
+                "language:en",
+                "license:mit",
+                "size_categories:10K<n<100K",
+                "modality:text",
+                "region:us",
+                "medical-imaging",
+                "chest-xray",
+                "healthcare"
+              ],
+              "readme": "---\r\nlicense: mit\r\ntask_categories:\r\n  - image-classification\r\nlanguage:\r\n  - en\r\ntags:\r\n  - medical-imaging\r\n  - chest-xray\r\n  - healthcare\r\npretty_name: NIH Chest X-ray14\r\nsize_categories:\r\n  - 10K<n<100K\r\n---\r\n\r\n# NIH Chest X-ray14 Dataset\r\n\r\n## Dataset Description\r\nThis dataset contains 112120 chest X-ray images with multiple disease labels per image.\r\n\r\n### Labels\r\nAtelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, No Finding, Nodule, Pleural_Thickening, Pneumonia, Pneumothorax\r\n\r\n## Dataset Structure\r\n- Train split: 78484 images\r\n- Validation split: 16818 images\r\n- Test split: 16818 images\r\n\r\n## Data Format\r\nThis dataset is optimized for streaming. Instead of containing the actual images, it contains:\r\n- `image_path`: Path to the image file\r\n- `labels`: List of disease labels for the image\r\n\r\n## Loading Images\r\nTo load images during training, use a loading function:\r\n\r\n```python\r\nfrom datasets import load_dataset\r\nimport torchvision.transforms as T\r\n\r\n# Define image loading and transforms\r\ndef load_and_transform_image(example):\r\n    image = Image.open(example['image_path']).convert('RGB')\r\n    transform = T.Compose([\r\n        T.Resize((224, 224)),\r\n        T.ToTensor(),\r\n        T.Normalize(mean=[0.485, 0.456, 0.406],\r\n                   std=[0.229, 0.224, 0.225])\r\n    ])\r\n    example['image'] = transform(image)\r\n    return example\r\n\r\n# Load dataset with streaming\r\ndataset = load_dataset(\"path/to/dataset\")\r\n\r\n# Set up data loading\r\ndataset = dataset.map(\r\n    load_and_transform_image,\r\n    remove_columns=['image_path']\r\n)\r\n```\r\n\r\n## Memory Usage\r\nThis dataset uses a streaming approach where images are loaded on-the-fly during training,\r\nmaking it memory efficient and suitable for large-scale training.\r\n",
+              "extracted_code": "from datasets import load_dataset\nimport torchvision.transforms as T\n\n# Define image loading and transforms\ndef load_and_transform_image(example):\n    image = Image.open(example['image_path']).convert('RGB')\n    transform = T.Compose([\n        T.Resize((224, 224)),\n        T.ToTensor(),\n        T.Normalize(mean=[0.485, 0.456, 0.406],\n                   std=[0.229, 0.224, 0.225])\n    ])\n    example['image'] = transform(image)\n    return example\n\n# Load dataset with streaming\ndataset = load_dataset(\"path/to/dataset\")\n\n# Set up data loading\ndataset = dataset.map(\n    load_and_transform_image,\n    remove_columns=['image_path']\n)"
+            },
+            {
+              "id": "XiangPan/CIFAR10.1",
+              "author": "XiangPan",
+              "sha": "c62f392e8aea6b2f1ea5a2c12d9bc04b48e50741",
+              "created_at": "2023-01-04T21:38:30+00:00",
+              "last_modified": "2023-01-04T21:38:30+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 7,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                }
+              ],
+              "card_data": {
+                "license": "mit",
+                "language": [],
+                "tags": [],
+                "datasets": [],
+                "task_categories": [],
+                "size_categories": [],
+                "metrics": [],
+                "widget": []
+              },
+              "tags": [
+                "license:mit",
+                "region:us"
+              ],
+              "readme": "---\nlicense: mit\n---\n",
+              "extracted_code": ""
+            },
+            {
+              "id": "randall-lab/tiny-imagenet-c",
+              "author": "randall-lab",
+              "sha": "c1fd717edefaec2969bb434b9221de0cd07c581c",
+              "created_at": "2025-03-19T16:03:37+00:00",
+              "last_modified": "2025-03-19T18:51:55+00:00",
+              "private": false,
+              "gated": false,
+              "disabled": false,
+              "downloads": 52,
+              "likes": 0,
+              "siblings": [
+                {
+                  "rfilename": ".gitattributes"
+                },
+                {
+                  "rfilename": "README.md"
+                },
+                {
+                  "rfilename": "tiny-imagenet-c.py"
+                }
+              ],
+              "tags": [
+                "arxiv:1903.12261",
+                "region:us"
+              ],
+              "readme": "---\n{}\n---\n\n# Dataset Card for Tiny-ImageNet-C\n\n<!-- Provide a quick summary of the dataset. -->\n\n## Dataset Details\n\n### Dataset Description\n\n<!-- Provide a longer summary of what this dataset is. -->\n\nIn Tiny ImageNet-C, there are 75,109 corrupted images derived from the original Tiny ImageNet dataset. The images are affected by two different corruption types at five severity levels.\n\n- **License:** CC BY 4.0\n\n### Dataset Sources\n\n<!-- Provide the basic links for the dataset. -->\n\n- **Homepage:** https://github.com/hendrycks/robustness\n- **Paper:** Hendrycks, D., & Dietterich, T. (2019). Benchmarking neural network robustness to common corruptions and perturbations. arXiv preprint arXiv:1903.12261.\n\n## Dataset Structure\n\n<!-- This section provides a description of the dataset fields, and additional information about the dataset structure such as criteria used to create the splits, relationships between data points, etc. -->\n\nTotal images: 75,109\n\nClasses: 200 categories\n\nSplits:\n\n- **Test:** 75,109 images\n\nImage specs: JPEG format, 64×64 pixels, RGB\n\n## Example Usage\nBelow is a quick example of how to load this dataset via the Hugging Face Datasets library.\n```\nfrom datasets import load_dataset  \n\n# Load the dataset  \ndataset = load_dataset(\"randall-lab/tiny-imagenet-c\", split=\"test\", trust_remote_code=True)\n\n# Access a sample from the dataset  \nexample = dataset[0]  \nimage = example[\"image\"]  \nlabel = example[\"label\"]  \n\nimage.show()  # Display the image  \nprint(f\"Label: {label}\")\n```\n\n## Citation\n\n<!-- If there is a paper or blog post introducing the dataset, the APA and Bibtex information for that should go in this section. -->\n\n**BibTeX:**\n\n@article{hendrycks2019benchmarking,\n  title={Benchmarking neural network robustness to common corruptions and perturbations},\n  author={Hendrycks, Dan and Dietterich, Thomas},\n  journal={arXiv preprint arXiv:1903.12261},\n  year={2019}\n}\n",
+              "extracted_code": "from datasets import load_dataset  \n\n# Load the dataset  \ndataset = load_dataset(\"randall-lab/tiny-imagenet-c\", split=\"test\", trust_remote_code=True)\n\n# Access a sample from the dataset  \nexample = dataset[0]  \nimage = example[\"image\"]  \nlabel = example[\"label\"]  \n\nimage.show()  # Display the image  \nprint(f\"Label: {label}\")"
+            }
+          ]
+        }
+      }
     }
   },
   "idea_info_history": [
